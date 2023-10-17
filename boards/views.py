@@ -2,9 +2,9 @@ from django.shortcuts import render
 from .models import Board
 
 def home(request):
-    result = Board.objects.all()
+    boards = Board.objects.all()
     boards_names = list()
-    return render(request, 'home.html', {'x': result , 'y':'sara'})
+    return render(request, 'home.html', {'boards': boards})
 
 
 
