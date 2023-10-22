@@ -28,3 +28,4 @@ def new_topic(request, pk):
     return render(request, 'new_topic.html', {'board': board})
 
 
+
