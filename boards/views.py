@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import Board, Topic, Post
+
 
 def new_topic(request, pk):
     board = get_object_or_404(Board, pk=pk)
@@ -26,6 +27,18 @@ def new_topic(request, pk):
         return redirect('board_topics', pk=board.pk)  # TODO: redirect to the created topic page
 
     return render(request, 'new_topic.html', {'board': board})
+
+
+
+def home(request):
+    boards = Board.objects.all()
+    boards_names = list()
+    return render(request, 'home.html', {'boards': boards})
+
+
+def board_topics(request, pk):
+    board = Board.objects.get(pk=pk)
+    return render(request, 'topics.html', {'board': board})
 
 
 
