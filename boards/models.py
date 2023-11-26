@@ -1,5 +1,5 @@
 from datetime import timezone
-
+from django.utils import timezone
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -14,6 +14,7 @@ class Board(models.Model):
 
 
 class Topic(models.Model):
+    default = ''
     timezone.now()
     subject = models.CharField(max_length=255)
     last_updated = models.DateTimeField(auto_now_add=True)
