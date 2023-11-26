@@ -1,9 +1,9 @@
-from datetime import timezone
+
 from django.utils import timezone
 from django.db import models
 from django.contrib.auth.models import User
 
-default = ''
+
 class Board(models.Model):
     name = models.CharField(max_length=30, unique=True)
     description = models.CharField(max_length=100)
@@ -14,7 +14,6 @@ class Board(models.Model):
 
 
 class Topic(models.Model):
-
     timezone.now()
     subject = models.CharField(max_length=255)
     last_updated = models.DateTimeField(auto_now_add=True)
@@ -23,9 +22,10 @@ class Topic(models.Model):
 
 
 class Post(models.Model):
+    timezone.now()
     message = models.TextField(max_length=4000)
     topic = models.ForeignKey(Topic, on_delete=models.CASCADE,related_name='posts')
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(auto_now_add=True )
     updated_at = models.DateTimeField(null=True)
     created_by = models.ForeignKey(User, on_delete=models.CASCADE,related_name='posts')
     updated_by = models.ForeignKey(User, on_delete=models.CASCADE,null=True, related_name='+')
