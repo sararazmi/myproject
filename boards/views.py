@@ -3,6 +3,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 
 from .forms import NewTopicForm, PostForm
 from .models import Board, Post, Topic
+from django.http import HttpResponse
 
 
 def home(request):
