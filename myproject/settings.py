@@ -11,14 +11,23 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 import os
 from pathlib import Path
-from decouple import config
-
+from decouple import config, Csv
+import dj_database_url
 
 SECRET_KEY = os.environ['SECRET_KEY']
 
-
 with open('/etc/secret_key.txt') as f:
     SECRET_KEY = f.read().strip()
+
+
+SECRET_KEY = config('SECRET_KEY')
+DEBUG = config('DEBUG', default=False, cast=bool)
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
+DATABASES = {
+    'default': dj_database_url.config(
+        default=config('DATABASE_URL')
+    )
+}
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
